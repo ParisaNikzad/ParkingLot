@@ -40,8 +40,8 @@ public class TicketingSystem {
 	 * 
 	 * @return slotNumber => slot number at which the vehicle needs to be parked
 	 */
-	int issueParkingTicket(Vehicle vehicle) throws RuntimeException{
-		if(vehicle == null) {
+	int issueParkingTicket(Vehicle vehicle) throws RuntimeException {
+		if (vehicle == null) {
 			throw new IllegalArgumentException("Vehicle cannot be null");
 		}
 		int assignedSlotNumber = parkingLot.fillAvailableSlot();
@@ -57,7 +57,7 @@ public class TicketingSystem {
 	 * @return slotNumber => the slot from the car has exited.
 	 */
 	void exitVehicle(int slotNumber) {
-		if(tickets.containsKey(slotNumber)) {
+		if (tickets.containsKey(slotNumber)) {
 			parkingLot.emptySlot(slotNumber);
 			tickets.remove(slotNumber);
 			return;
@@ -74,7 +74,16 @@ public class TicketingSystem {
 	 *         color
 	 */
 	List<String> getRegistrationNumbersFromColor(String color) {
-		throw new RuntimeException("Not yet defined");
+		if(color == null) {
+			throw new IllegalArgumentException("color cannot be null");
+		}
+		List<String> registrationNumbers = new ArrayList<String>();
+		for(Ticket ticket: tickets.values()) {
+			if(color.equals(ticket.vehicle.getColor())) {
+				registrationNumbers.add(ticket.vehicle.getRegistrationNumber());
+			}
+		}
+		return registrationNumbers;
 	}
 
 	/**
@@ -86,7 +95,15 @@ public class TicketingSystem {
 	 *         parked
 	 */
 	int getSlotNumberFromRegistrationNumber(String registrationNumber) {
-		throw new RuntimeException("Not yet defined");
+		if(registrationNumber == null) {
+			throw new IllegalArgumentException("registrationNumber cannot be null");
+		}
+		for(Ticket ticket: tickets.values()) {
+			if(registrationNumber.equals(ticket.vehicle.getRegistrationNumber())) {
+				return ticket.slotNumber;
+			}
+		}
+		throw new RuntimeException("Not found");
 	}
 
 	/**
@@ -95,8 +112,17 @@ public class TicketingSystem {
 	 * @param color => Color of the Vehicle
 	 * @return List of all the slot numbers of the vehicles with the given color
 	 */
-	List<String> getSlotNumbersFromColor(String color) {
-		throw new RuntimeException("Not yet defined");
+	List<Integer> getSlotNumbersFromColor(String color) {
+		if(color == null) {
+			throw new IllegalArgumentException("color cannot be null");
+		}
+		List<Integer> registrationNumbers = new ArrayList<Integer>();
+		for(Ticket ticket: tickets.values()) {
+			if(color.equals(ticket.vehicle.getColor())) {
+				registrationNumbers.add(ticket.slotNumber);
+			}
+		}
+		return registrationNumbers;
 	}
 
 	private class Ticket {
