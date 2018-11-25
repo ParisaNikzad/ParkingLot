@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.gojek.assignment.domain.StatusResponse;
 import com.gojek.assignment.domain.Vehicle;
 
 public class TicketingSystem {
@@ -74,12 +75,12 @@ public class TicketingSystem {
 	 *         color
 	 */
 	List<String> getRegistrationNumbersFromColor(String color) {
-		if(color == null) {
+		if (color == null) {
 			throw new IllegalArgumentException("color cannot be null");
 		}
 		List<String> registrationNumbers = new ArrayList<String>();
-		for(Ticket ticket: tickets.values()) {
-			if(color.equals(ticket.vehicle.getColor())) {
+		for (Ticket ticket : tickets.values()) {
+			if (color.equals(ticket.vehicle.getColor())) {
 				registrationNumbers.add(ticket.vehicle.getRegistrationNumber());
 			}
 		}
@@ -95,11 +96,11 @@ public class TicketingSystem {
 	 *         parked
 	 */
 	int getSlotNumberFromRegistrationNumber(String registrationNumber) {
-		if(registrationNumber == null) {
+		if (registrationNumber == null) {
 			throw new IllegalArgumentException("registrationNumber cannot be null");
 		}
-		for(Ticket ticket: tickets.values()) {
-			if(registrationNumber.equals(ticket.vehicle.getRegistrationNumber())) {
+		for (Ticket ticket : tickets.values()) {
+			if (registrationNumber.equals(ticket.vehicle.getRegistrationNumber())) {
 				return ticket.slotNumber;
 			}
 		}
@@ -113,16 +114,32 @@ public class TicketingSystem {
 	 * @return List of all the slot numbers of the vehicles with the given color
 	 */
 	List<Integer> getSlotNumbersFromColor(String color) {
-		if(color == null) {
+		if (color == null) {
 			throw new IllegalArgumentException("color cannot be null");
 		}
 		List<Integer> registrationNumbers = new ArrayList<Integer>();
-		for(Ticket ticket: tickets.values()) {
-			if(color.equals(ticket.vehicle.getColor())) {
+		for (Ticket ticket : tickets.values()) {
+			if (color.equals(ticket.vehicle.getColor())) {
 				registrationNumbers.add(ticket.slotNumber);
 			}
 		}
 		return registrationNumbers;
+	}
+
+	/**
+	 * returns the status of the ticketing system, a list of all the tickets
+	 * converted to status objects
+	 * 
+	 * @return List of StatusResponse => List of (slotNumber, registrationNumber,
+	 *         color)
+	 */
+	List<StatusResponse> getStatus() {
+		List<StatusResponse> statusResponseList = new ArrayList<StatusResponse>();
+		for (Ticket ticket : tickets.values()) {
+			statusResponseList.add(new StatusResponse(ticket.slotNumber, ticket.vehicle.getRegistrationNumber(),
+					ticket.vehicle.getColor()));
+		}
+		return statusResponseList;
 	}
 
 	private class Ticket {

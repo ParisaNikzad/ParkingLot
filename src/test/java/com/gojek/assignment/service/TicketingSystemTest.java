@@ -1,12 +1,12 @@
 package com.gojek.assignment.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.gojek.assignment.domain.Car;
+import com.gojek.assignment.domain.StatusResponse;
 
 public class TicketingSystemTest {
 
@@ -33,7 +33,7 @@ public class TicketingSystemTest {
 		Assert.assertEquals(6, slot6);
 
 		ticketingSystem.exitVehicle(4);
-
+		
 		int slot7 = ticketingSystem.issueParkingTicket(new Car("KA-01-P-333", "White"));
 		Assert.assertEquals(4, slot7);
 
@@ -190,6 +190,19 @@ public class TicketingSystemTest {
 	public void getSlotNumbersFromNullColor() {
 		TicketingSystem ticketingSystem = new TicketingSystem(new ParkingLot(5));
 		ticketingSystem.getSlotNumbersFromColor(null);
+	}
+	
+	@Test
+	public void getStatus() {
+		TicketingSystem ticketingSystem = new TicketingSystem(new ParkingLot(1));
+		ticketingSystem.issueParkingTicket(new Car("KA-01-HH-2701", "Blue"));
+		
+		List<StatusResponse> statusResponseList = ticketingSystem.getStatus();
+		Assert.assertEquals(1, statusResponseList.size());
+		Assert.assertEquals("KA-01-HH-2701", statusResponseList.get(0).getRegistrationNumber());
+		Assert.assertEquals("Blue", statusResponseList.get(0).getColor());
+		Assert.assertEquals(1, statusResponseList.get(0).getSlotNumber());
+		
 	}
 
 	private class FakeParkingLot extends ParkingLot {
