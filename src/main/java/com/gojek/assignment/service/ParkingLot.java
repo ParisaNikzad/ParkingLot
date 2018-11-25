@@ -1,9 +1,12 @@
 package com.gojek.assignment.service;
 
 class ParkingLot {
-	private ParkingLot parkingLot;
+	private static ParkingLot parkingLot;
 
-	private ParkingLot() {
+	/**
+	 * VisibleForTesting(otherwise = PRIVATE)
+	 */
+	protected ParkingLot() {
 
 	}
 
@@ -11,9 +14,9 @@ class ParkingLot {
 	 * Singleton Class => Returns a single instance of the class
 	 * 
 	 * @param numberOfSlots => number of slots in the parking lot
-	 * @return parkingLot instance
+	 * @return ParkingLot instance
 	 */
-	ParkingLot getInstance(int numberOfSlots) {
+	static ParkingLot getInstance(int numberOfSlots) {
 		if (parkingLot == null) {
 			parkingLot = new ParkingLot();
 		}
