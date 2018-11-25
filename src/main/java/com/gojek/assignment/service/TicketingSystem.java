@@ -7,8 +7,9 @@ import java.util.Map;
 
 import com.gojek.assignment.domain.StatusResponse;
 import com.gojek.assignment.domain.Vehicle;
+import com.gojek.assignment.service.exceptions.ParkingLotException;
 
-public class TicketingSystem {
+class TicketingSystem {
 	private static TicketingSystem ticketingSystem;
 	private ParkingLot parkingLot;
 	private Map<Integer, Ticket> tickets;
@@ -28,7 +29,7 @@ public class TicketingSystem {
 	 *                      ticketing system is managing
 	 * @return TicketingSystem instance
 	 */
-	static TicketingSystem getInstance(int numberOfSlots) {
+	static TicketingSystem createInstance(int numberOfSlots) {
 		if (ticketingSystem == null) {
 			ParkingLot parkingLot = ParkingLot.getInstance(numberOfSlots);
 			ticketingSystem = new TicketingSystem(parkingLot);
@@ -37,11 +38,19 @@ public class TicketingSystem {
 	}
 
 	/**
+	 * 
+	 * @return TicketingSystem instance
+	 */
+	static TicketingSystem getInstance() {
+		return ticketingSystem;
+	}
+
+	/**
 	 * Parks a vehicle
 	 * 
 	 * @return slotNumber => slot number at which the vehicle needs to be parked
 	 */
-	int issueParkingTicket(Vehicle vehicle) throws RuntimeException {
+	int issueParkingTicket(Vehicle vehicle) {
 		if (vehicle == null) {
 			throw new IllegalArgumentException("Vehicle cannot be null");
 		}
@@ -63,7 +72,7 @@ public class TicketingSystem {
 			tickets.remove(slotNumber);
 			return;
 		} else {
-			throw new RuntimeException("Ticket Not found");
+			throw new IllegalStateException("Ticket Not found");
 		}
 	}
 
@@ -104,7 +113,8 @@ public class TicketingSystem {
 				return ticket.slotNumber;
 			}
 		}
-		throw new RuntimeException("Not found");
+
+		throw new ParkingLotException("Not found");
 	}
 
 	/**

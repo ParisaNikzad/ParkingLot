@@ -3,6 +3,8 @@ package com.gojek.assignment.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.gojek.assignment.service.exceptions.ParkingLotException;
+
 class ParkingLot {
 	private static ParkingLot parkingLot;
 	private Map<Integer, Slot> slots;
@@ -48,7 +50,7 @@ class ParkingLot {
 		if (nextAvailableSlotNumber != -1) {
 			return nextAvailableSlotNumber;
 		} else {
-			throw new RuntimeException("Sorry, parking lot is full");
+			throw new ParkingLotException("Sorry, parking lot is full");
 		}
 	}
 
@@ -60,12 +62,12 @@ class ParkingLot {
 	void emptySlot(int slotNumber) {
 		if (slots.containsKey(slotNumber)) {
 			if (slots.get(slotNumber).status) {
-				throw new RuntimeException("The slot is already empty");
+				throw new IllegalStateException("The slot is already empty");
 			} else {
 				slots.get(slotNumber).status = true;
 			}
 		} else {
-			throw new RuntimeException("The slot number is invalid");
+			throw new IllegalStateException("The slot number is invalid");
 		}
 	}
 

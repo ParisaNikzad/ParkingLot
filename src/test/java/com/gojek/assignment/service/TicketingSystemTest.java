@@ -12,7 +12,7 @@ public class TicketingSystemTest {
 
 	@Test
 	public void integrationTest() {
-		TicketingSystem ticketingSystem = TicketingSystem.getInstance(6);
+		TicketingSystem ticketingSystem = TicketingSystem.createInstance(6);
 
 		int slot1 = ticketingSystem.issueParkingTicket(new Car("KA-01-HH-1234", "White"));
 		Assert.assertEquals(1, slot1);
@@ -59,8 +59,6 @@ public class TicketingSystemTest {
 		}catch(Exception e) {
 			Assert.assertEquals("", "Not found", e.getMessage());
 		}
-		
-
 	}
 
 	@Test
