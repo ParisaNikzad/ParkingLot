@@ -1,18 +1,23 @@
 package com.gojek.assignment.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.gojek.assignment.domain.Vehicle;
 
 public class TicketingSystem {
 	private static TicketingSystem ticketingSystem;
 	private ParkingLot parkingLot;
+	private Map<Integer, Ticket> tickets;
 
 	/**
 	 * VisibleForTesting(otherwise = PRIVATE)
 	 */
 	TicketingSystem(ParkingLot parkingLot) {
 		this.parkingLot = parkingLot;
+		tickets = new HashMap<Integer, Ticket>();
 	}
 
 	/**
@@ -35,18 +40,30 @@ public class TicketingSystem {
 	 * 
 	 * @return slotNumber => slot number at which the vehicle needs to be parked
 	 */
-	int issueParkingTicket(Vehicle vehicle) {
-		throw new RuntimeException("Not yet defined");
+	int issueParkingTicket(Vehicle vehicle) throws RuntimeException{
+		if(vehicle == null) {
+			throw new IllegalArgumentException("Vehicle cannot be null");
+		}
+		int assignedSlotNumber = parkingLot.fillAvailableSlot();
+		Ticket ticket = new Ticket(assignedSlotNumber, vehicle);
+		tickets.put(assignedSlotNumber, ticket);
+		return assignedSlotNumber;
 	}
 
 	/**
 	 * Exits a vehicle from the parking lot => TODO:// Better Naming ??
 	 * 
-	 * @param vehicle
+	 * @param registrationNumber
 	 * @return slotNumber => the slot from the car has exited.
 	 */
-	int exitVehicle(Vehicle vehicle) {
-		throw new RuntimeException("Not yet defined");
+	void exitVehicle(int slotNumber) {
+		if(tickets.containsKey(slotNumber)) {
+			parkingLot.emptySlot(slotNumber);
+			tickets.remove(slotNumber);
+			return;
+		} else {
+			throw new RuntimeException("Ticket Not found");
+		}
 	}
 
 	/**
@@ -80,5 +97,15 @@ public class TicketingSystem {
 	 */
 	List<String> getSlotNumbersFromColor(String color) {
 		throw new RuntimeException("Not yet defined");
+	}
+
+	private class Ticket {
+		int slotNumber;
+		Vehicle vehicle;
+
+		Ticket(int slotNumber, Vehicle vehicle) {
+			this.slotNumber = slotNumber;
+			this.vehicle = vehicle;
+		}
 	}
 }

@@ -1,9 +1,7 @@
 package com.gojek.assignment.service;
 
-import java.util.Map;
-
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Map;
 
 class ParkingLot {
 	private static ParkingLot parkingLot;
@@ -38,10 +36,9 @@ class ParkingLot {
 	 * @return slot number which was marked unavailable
 	 */
 	int fillAvailableSlot() {
-		Iterator<Integer> it = slots.keySet().iterator();
 		int nextAvailableSlotNumber = -1;
-		while (it.hasNext()) {
-			Slot s = slots.get(it.next());
+		for (int i = 1; i <= slots.size(); i++) {
+			Slot s = slots.get(i);
 			if (s.status) {
 				nextAvailableSlotNumber = s.slotNumber;
 				s.status = false;
@@ -62,13 +59,13 @@ class ParkingLot {
 	 */
 	void emptySlot(int slotNumber) {
 		if (slots.containsKey(slotNumber)) {
-			if(slots.get(slotNumber).status) {
+			if (slots.get(slotNumber).status) {
 				throw new RuntimeException("The slot is already empty");
 			} else {
 				slots.get(slotNumber).status = true;
 			}
 		} else {
-			throw new RuntimeException("The slot is not filled");
+			throw new RuntimeException("The slot number is invalid");
 		}
 	}
 
