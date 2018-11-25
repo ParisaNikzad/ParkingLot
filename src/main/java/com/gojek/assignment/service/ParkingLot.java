@@ -1,13 +1,22 @@
 package com.gojek.assignment.service;
 
+import java.util.Map;
+
+import java.util.HashMap;
+import java.util.Iterator;
+
 class ParkingLot {
 	private static ParkingLot parkingLot;
+	private Map<Integer, Slot> slots;
 
 	/**
 	 * VisibleForTesting(otherwise = PRIVATE)
 	 */
-	protected ParkingLot() {
-
+	protected ParkingLot(int numberOfSlots) {
+		slots = new HashMap<Integer, Slot>();
+		for (int i = 1; i <= numberOfSlots; i++) {
+			slots.put(i, new Slot(i));
+		}
 	}
 
 	/**
@@ -18,7 +27,7 @@ class ParkingLot {
 	 */
 	static ParkingLot getInstance(int numberOfSlots) {
 		if (parkingLot == null) {
-			parkingLot = new ParkingLot();
+			parkingLot = new ParkingLot(numberOfSlots);
 		}
 		return parkingLot;
 	}
@@ -29,7 +38,21 @@ class ParkingLot {
 	 * @return slot number which was marked unavailable
 	 */
 	int fillAvailableSlot() {
-		throw new RuntimeException("Not yet defined");
+		Iterator<Integer> it = slots.keySet().iterator();
+		int nextAvailableSlotNumber = -1;
+		while (it.hasNext()) {
+			Slot s = slots.get(it.next());
+			if (s.status) {
+				nextAvailableSlotNumber = s.slotNumber;
+				s.status = false;
+				break;
+			}
+		}
+		if (nextAvailableSlotNumber != -1) {
+			return nextAvailableSlotNumber;
+		} else {
+			throw new RuntimeException("Sorry, parking lot is full");
+		}
 	}
 
 	/**
@@ -38,6 +61,30 @@ class ParkingLot {
 	 * @param slotNumber => the slot number to be made empty
 	 */
 	void emptySlot(int slotNumber) {
-		throw new RuntimeException("Not yet defined");
+		if (slots.containsKey(slotNumber)) {
+			if(slots.get(slotNumber).status) {
+				throw new RuntimeException("The slot is already empty");
+			} else {
+				slots.get(slotNumber).status = true;
+			}
+		} else {
+			throw new RuntimeException("The slot is not filled");
+		}
+	}
+
+	/**
+	 * private Class => Slot is an entity known only to parking lot.
+	 *
+	 */
+	private class Slot {
+		// unique slot identifier
+		private int slotNumber;
+		// boolean status to maintain isAvailable => true=available, false=not available
+		private boolean status;
+
+		Slot(int slotNumber) {
+			this.slotNumber = slotNumber;
+			this.status = true;
+		}
 	}
 }
