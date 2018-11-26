@@ -92,7 +92,7 @@ public class CommandExecutor {
 		try {
 			command.validate();
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			System.out.println("Please provide a valid argument");
 			return false;
 		}
 
@@ -103,9 +103,9 @@ public class CommandExecutor {
 			System.out.print(e.getMessage());
 		} catch(Exception e) {
 			System.out.println("Unknown System Issue");
-			e.printStackTrace();;
+			e.printStackTrace();
+			return false;
 		}
-
 		System.out.println(output);
 		return true;
 	}

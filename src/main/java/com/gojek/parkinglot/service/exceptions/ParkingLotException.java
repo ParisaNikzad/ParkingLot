@@ -1,5 +1,9 @@
 package com.gojek.parkinglot.service.exceptions;
 
+/**
+ * Exception Class for custom exceptions - doesn't stop the execution
+ *
+ */
 public class ParkingLotException extends RuntimeException {
 	/**
 	 * Auto-generated SerialVersionID;

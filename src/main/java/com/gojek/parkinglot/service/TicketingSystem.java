@@ -30,6 +30,9 @@ class TicketingSystem {
 	 * @return TicketingSystem instance
 	 */
 	static TicketingSystem createInstance(int numberOfSlots) {
+		if(numberOfSlots < 1) {
+			throw new ParkingLotException("Number of slots cannot be less than 1");
+		}
 		if (ticketingSystem == null) {
 			ParkingLot parkingLot = ParkingLot.getInstance(numberOfSlots);
 			ticketingSystem = new TicketingSystem(parkingLot);
@@ -75,7 +78,7 @@ class TicketingSystem {
 			tickets.remove(slotNumber);
 			return;
 		} else {
-			throw new IllegalStateException("Ticket Not found");
+			throw new ParkingLotException("No vehicle found at given slot. Incorrect input");
 		}
 	}
 

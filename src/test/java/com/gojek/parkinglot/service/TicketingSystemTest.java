@@ -96,7 +96,7 @@ public class TicketingSystemTest {
 			ticketingSystem.exitVehicle(3);
 			Assert.assertTrue("should throw ticket not found exception", false);
 		} catch (Exception e) {
-			Assert.assertEquals("", "Ticket Not found", e.getMessage());
+			Assert.assertEquals("", "No vehicle found at given slot. Incorrect input", e.getMessage());
 		}
 	}
 
