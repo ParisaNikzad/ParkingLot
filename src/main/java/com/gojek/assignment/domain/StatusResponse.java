@@ -25,7 +25,7 @@ public class StatusResponse {
 
 	@Override
 	public String toString() {
-		return slotNumber + "\t" + registrationNumber + "\t" + color;
+		return slotNumber + "           " + registrationNumber + "      " + color;
 	}
 
 }

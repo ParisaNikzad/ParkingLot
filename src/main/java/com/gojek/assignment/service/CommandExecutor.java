@@ -232,7 +232,7 @@ public class CommandExecutor {
 			}
 			List<StatusResponse> statusResponseList = ticketingSystem.getStatus();
 
-			StringBuilder outputStringBuilder = new StringBuilder("Slot No.\tRegistration No\tColour");
+			StringBuilder outputStringBuilder = new StringBuilder("Slot No.    Registration No    Colour");
 			for (StatusResponse statusResponse : statusResponseList) {
 				outputStringBuilder.append("\n").append(statusResponse);
 			}
