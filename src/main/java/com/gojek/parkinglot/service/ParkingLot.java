@@ -1,9 +1,9 @@
-package com.gojek.assignment.service;
+package com.gojek.parkinglot.service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.gojek.assignment.service.exceptions.ParkingLotException;
+import com.gojek.parkinglot.service.exceptions.ParkingLotException;
 
 class ParkingLot {
 	private static ParkingLot parkingLot;

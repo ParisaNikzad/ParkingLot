@@ -1,11 +1,11 @@
-package com.gojek.assignment;
+package com.gojek.parkinglot;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 
-import com.gojek.assignment.service.CommandExecutor;
+import com.gojek.parkinglot.service.CommandExecutor;
 
 public class App {
 	public static void main(String[] args) throws Exception {

@@ -1,10 +1,10 @@
-package com.gojek.assignment.service;
+package com.gojek.parkinglot.service;
 
 import java.util.List;
 
-import com.gojek.assignment.domain.Car;
-import com.gojek.assignment.domain.StatusResponse;
-import com.gojek.assignment.service.exceptions.ParkingLotException;
+import com.gojek.parkinglot.domain.Car;
+import com.gojek.parkinglot.domain.StatusResponse;
+import com.gojek.parkinglot.service.exceptions.ParkingLotException;
 
 public class CommandExecutor {
 	private static CommandExecutor commandExecutor;

@@ -22,7 +22,7 @@
                       <manifest>
                           <addClasspath>true</addClasspath>
                           <classpathPrefix>lib/</classpathPrefix>
-                          <mainClass>com.gojek.assignment.App</mainClass>
+                          <mainClass>com.gojek.parkinglot.App</mainClass>
                       </manifest>
                   </archive>
               </configuration>

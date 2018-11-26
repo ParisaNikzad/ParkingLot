@@ -1,13 +1,13 @@
-package com.gojek.assignment.service;
+package com.gojek.parkinglot.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.gojek.assignment.domain.StatusResponse;
-import com.gojek.assignment.domain.Vehicle;
-import com.gojek.assignment.service.exceptions.ParkingLotException;
+import com.gojek.parkinglot.domain.StatusResponse;
+import com.gojek.parkinglot.domain.Vehicle;
+import com.gojek.parkinglot.service.exceptions.ParkingLotException;
 
 class TicketingSystem {
 	private static TicketingSystem ticketingSystem;

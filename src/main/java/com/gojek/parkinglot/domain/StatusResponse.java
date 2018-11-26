@@ -1,4 +1,4 @@
-package com.gojek.assignment.domain;
+package com.gojek.parkinglot.domain;
 
 public class StatusResponse {
 	private int slotNumber;

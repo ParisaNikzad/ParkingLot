@@ -1,7 +1,9 @@
-package com.gojek.assignment.domain;
+package com.gojek.parkinglot.domain;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.gojek.parkinglot.domain.Car;
 
 public class CarTest {
 

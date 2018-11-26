@@ -1,4 +1,4 @@
-package com.gojek.assignment.service.exceptions;
+package com.gojek.parkinglot.service.exceptions;
 
 public class ParkingLotException extends RuntimeException {
 	/**

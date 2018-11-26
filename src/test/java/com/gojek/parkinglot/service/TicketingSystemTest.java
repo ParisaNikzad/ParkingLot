@@ -1,12 +1,14 @@
-package com.gojek.assignment.service;
+package com.gojek.parkinglot.service;
 
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.gojek.assignment.domain.Car;
-import com.gojek.assignment.domain.StatusResponse;
+import com.gojek.parkinglot.domain.Car;
+import com.gojek.parkinglot.domain.StatusResponse;
+import com.gojek.parkinglot.service.ParkingLot;
+import com.gojek.parkinglot.service.TicketingSystem;
 
 public class TicketingSystemTest {
 

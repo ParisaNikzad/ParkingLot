@@ -1,7 +1,9 @@
-package com.gojek.assignment.service;
+package com.gojek.parkinglot.service;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.gojek.parkinglot.service.ParkingLot;
 
 public class ParkingLotTest {
 
