@@ -30,7 +30,7 @@ public class ParkingLotTest {
 			Assert.assertTrue("should throw parking lot is full", false);
 		} catch (Exception e) {
 			String message = e.getMessage();
-			Assert.assertEquals("", "Sorry, parking lot is full", message); // TODO: Add proper error message
+			Assert.assertEquals("Sorry, parking lot is full", message);
 		}
 	}
 
@@ -71,7 +71,7 @@ public class ParkingLotTest {
 			Assert.assertTrue("should throw slot number is invalid exception", false);
 		} catch (Exception e) {
 			String message = e.getMessage();
-			Assert.assertEquals("", "The slot number is invalid", message); // TODO: Add proper error message,
+			Assert.assertEquals("The slot number is invalid", message);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class ParkingLotTest {
 			Assert.assertTrue("should throw slot already empty exception", false);
 		} catch (Exception e) {
 			String message = e.getMessage();
-			Assert.assertEquals("", "The slot is already empty", message); // TODO: Add proper error message
+			Assert.assertEquals("The slot is already empty", message);
 		}
 	}
 

@@ -64,7 +64,7 @@ class TicketingSystem {
 	}
 
 	/**
-	 * Exits a vehicle from the parking lot => TODO:// Better Naming ??
+	 * Exits a vehicle from the parking lot
 	 * 
 	 * @param registrationNumber
 	 * @return slotNumber => the slot from the car has exited.
