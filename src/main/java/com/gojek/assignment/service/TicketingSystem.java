@@ -151,7 +151,11 @@ class TicketingSystem {
 		}
 		return statusResponseList;
 	}
-
+	
+	/**
+	 * Ticketing System issues a ticket => an object known only to Ticketing System
+	 *
+	 */
 	private class Ticket {
 		int slotNumber;
 		Vehicle vehicle;

@@ -46,7 +46,12 @@ public class CommandExecutor {
 		return commandName;
 
 	}
-
+	
+	/**
+	 * the main function to execute the commands 
+	 * @param commandString
+	 * @return boolean if the execution is success or not
+	 */
 	public boolean execute(String commandString) {
 
 		CommandName commandName = getCommandName(commandString);
@@ -80,6 +85,7 @@ public class CommandExecutor {
 			command = new SlotNumberCommand(commandStringArray);
 			break;
 		default:
+			System.out.println("Unknown Command");
 			return false;
 		}
 

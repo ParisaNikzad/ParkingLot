@@ -26,7 +26,10 @@ public class App {
 			if (commandText == null || "exit".equalsIgnoreCase(commandText)) {
 				break;
 			} else {
-				commandExecutor.execute(commandText);
+				boolean executionSuccess = commandExecutor.execute(commandText);
+				if(!executionSuccess) {
+					break;
+				}
 			}
 		}
 	}

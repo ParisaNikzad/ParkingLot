@@ -33,7 +33,7 @@ public class TicketingSystemTest {
 		Assert.assertEquals(6, slot6);
 
 		ticketingSystem.exitVehicle(4);
-		
+
 		int slot7 = ticketingSystem.issueParkingTicket(new Car("KA-01-P-333", "White"));
 		Assert.assertEquals(4, slot7);
 
@@ -43,20 +43,20 @@ public class TicketingSystemTest {
 		} catch (Exception e) {
 			Assert.assertEquals("", "Sorry, parking lot is full", e.getMessage());
 		}
-		
+
 		List<String> registrationNumbers = ticketingSystem.getRegistrationNumbersFromColor("White");
 		Assert.assertEquals(3, registrationNumbers.size());
-		
+
 		List<Integer> slotNumbers = ticketingSystem.getSlotNumbersFromColor("White");
 		Assert.assertEquals(3, slotNumbers.size());
-		
+
 		int slotNumber = ticketingSystem.getSlotNumberFromRegistrationNumber("KA-01-HH-3141");
 		Assert.assertEquals(6, slotNumber);
-		
+
 		try {
 			int slotNumber2 = ticketingSystem.getSlotNumberFromRegistrationNumber("MH-04-AY-1111");
 			Assert.assertTrue("should throw not found exception", true);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			Assert.assertEquals("", "Not found", e.getMessage());
 		}
 	}
@@ -189,20 +189,25 @@ public class TicketingSystemTest {
 		TicketingSystem ticketingSystem = new TicketingSystem(new ParkingLot(5));
 		ticketingSystem.getSlotNumbersFromColor(null);
 	}
-	
+
 	@Test
 	public void getStatus() {
 		TicketingSystem ticketingSystem = new TicketingSystem(new ParkingLot(1));
 		ticketingSystem.issueParkingTicket(new Car("KA-01-HH-2701", "Blue"));
-		
+
 		List<StatusResponse> statusResponseList = ticketingSystem.getStatus();
 		Assert.assertEquals(1, statusResponseList.size());
 		Assert.assertEquals("KA-01-HH-2701", statusResponseList.get(0).getRegistrationNumber());
 		Assert.assertEquals("Blue", statusResponseList.get(0).getColor());
 		Assert.assertEquals(1, statusResponseList.get(0).getSlotNumber());
-		
+
 	}
 
+	/**
+	 * FakeParkingLot to emulate/mock ParkingLot class and override some functions
+	 * for testing
+	 *
+	 */
 	private class FakeParkingLot extends ParkingLot {
 
 		private int nextAvailableSlotNumber;
