@@ -37,5 +37,12 @@ EOTXT
 )
   end
   
-  pending "add more specs as needed"
+  it "can unpark a car" do
+    command.write("park KA-01-HH-2700 Blue\n")
+    command.write("park KA-01-HH-0078 Black\n")
+    command.write("leave 1\n")
+    command.write("leave 2\n")
+    stop_all_commands
+    expect(command.output).to end_with("Slot number 1 is free\nSlot number 2 is free\n")
+  end
 end

@@ -42,6 +42,9 @@ class TicketingSystem {
 	 * @return TicketingSystem instance
 	 */
 	static TicketingSystem getInstance() {
+		if(ticketingSystem == null) {
+			throw new IllegalStateException("Parking Lot is not initialized");
+		}
 		return ticketingSystem;
 	}
 

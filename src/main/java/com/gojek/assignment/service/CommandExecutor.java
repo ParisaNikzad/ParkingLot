@@ -172,9 +172,6 @@ public class CommandExecutor {
 
 		public String execute() {
 			TicketingSystem ticketingSystem = TicketingSystem.getInstance();
-			if (ticketingSystem == null) {
-				throw new IllegalStateException("Parking Lot is not initialized");
-			}
 			int allocatedSlotNumber = ticketingSystem
 					.issueParkingTicket(new Car(commandStringArray[1], commandStringArray[2]));
 			return "Allocated slot number: " + allocatedSlotNumber;
@@ -200,9 +197,6 @@ public class CommandExecutor {
 
 		public String execute() {
 			TicketingSystem ticketingSystem = TicketingSystem.getInstance();
-			if (ticketingSystem == null) {
-				throw new IllegalStateException("Parking Lot is not initialized");
-			}
 			ticketingSystem.exitVehicle(Integer.parseInt(commandStringArray[1]));
 			return "Slot number " + commandStringArray[1] + " is free";
 		}
@@ -227,9 +221,6 @@ public class CommandExecutor {
 
 		public String execute() {
 			TicketingSystem ticketingSystem = TicketingSystem.getInstance();
-			if (ticketingSystem == null) {
-				throw new IllegalStateException("Parking Lot is not initialized");
-			}
 			List<StatusResponse> statusResponseList = ticketingSystem.getStatus();
 
 			StringBuilder outputStringBuilder = new StringBuilder("Slot No.    Registration No    Colour");
@@ -261,9 +252,6 @@ public class CommandExecutor {
 
 		public String execute() {
 			TicketingSystem ticketingSystem = TicketingSystem.getInstance();
-			if (ticketingSystem == null) {
-				throw new IllegalStateException("Parking Lot is not initialized");
-			}
 			List<String> registrationNumbersList = ticketingSystem
 					.getRegistrationNumbersFromColor(commandStringArray[1]);
 			StringBuilder outputStringBuilder = new StringBuilder();
@@ -298,9 +286,6 @@ public class CommandExecutor {
 
 		public String execute() {
 			TicketingSystem ticketingSystem = TicketingSystem.getInstance();
-			if (ticketingSystem == null) {
-				throw new IllegalStateException("Parking Lot is not initialized");
-			}
 			List<Integer> slotNumbersList = ticketingSystem.getSlotNumbersFromColor(commandStringArray[1]);
 			StringBuilder outputStringBuilder = new StringBuilder();
 			for (int slotNumber : slotNumbersList) {
@@ -334,9 +319,6 @@ public class CommandExecutor {
 
 		public String execute() {
 			TicketingSystem ticketingSystem = TicketingSystem.getInstance();
-			if (ticketingSystem == null) {
-				throw new IllegalStateException("Parking Lot is not initialized");
-			}
 			int slotNumber = ticketingSystem.getSlotNumberFromRegistrationNumber(commandStringArray[1]);
 			return "" + slotNumber;
 		}
